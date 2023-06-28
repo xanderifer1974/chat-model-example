@@ -33,6 +33,16 @@
 
   }
 
+  .btn-close{
+    height: 5px !important;
+    display: inline-block;
+    vertical-align: middle;    
+  }
+
+  .btn-close #close-bar{
+    color: #E5E5EA;
+  }
+
   .config-titulo{
     display: inline-block;
     vertical-align: middle;
@@ -60,13 +70,15 @@
   }
   
   .message-content {
-    background-color: #DCF8C6;
+    background-color: #13454C;
     padding: 10px;
-    border-radius: 10px;
+    color: #fff;
+    border-radius: 5px;
   }
   
   .outgoing .message-content {
     background-color: #E5E5EA;
+    color:#13454C;
   }
   
   .message-timestamp {

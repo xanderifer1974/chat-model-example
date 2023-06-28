@@ -1,6 +1,7 @@
 let divMensagem = document.querySelector(".chat-messages")
 let buttonEnviar = document.querySelector("#send-message");
 
+
 function criarMensagem(mensagem) {
     const divPrincipal = document.createElement('div');
     
@@ -47,22 +48,21 @@ function criarHoraAtual() {
 
 }
 
-function EnviarMensagem() {
-
-    let mensagem = document.querySelector("input#mensagem").value;
-    let resposta = "Olá, iremos responder em breve a sua mensagem";
-    let horario = criarHoraAtual();
+function EnviarMensagem(mensagem) {    
+    // let resposta = "Olá, iremos responder em breve a sua mensagem";
+   
     divMensagem.appendChild(criarMensagem(mensagem))
 
-    setTimeout(function() {
-        let Resposta = ResponderMensagem(resposta,horario)
-        divMensagem.appendChild(Resposta)
-      }, 2000);
+    // setTimeout(function() {
+    //     let Resposta = ResponderMensagem(resposta,horario)
+    //     divMensagem.appendChild(Resposta)
+    //   }, 2000);
       
 
 }
 
-function ResponderMensagem(texto, horario) {
+function ResponderMensagem(texto) {
+    let horario = criarHoraAtual();
     var divMensagem = document.createElement('div');
     divMensagem.id = 'mensagem-e-horario-resposta';
   
@@ -93,5 +93,49 @@ function ResponderMensagem(texto, horario) {
     return divMensagem;
   }
 
-buttonEnviar.addEventListener("click",EnviarMensagem);
+//Crear o modelo de chat com uma api fake.
+buttonEnviar.addEventListener("click",async (e) =>{
+    e.preventDefault();
+    let pergunta = document.querySelector("input#mensagem").value;
+    divMensagem.appendChild(criarMensagem(pergunta))
+
+    await fetch("https://api.openai.com/v1/chat/completions", {
+
+            // Método para enviar os dados
+            method: "POST",
+
+            // Dados ennviados no cabeçalho da requisição
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + OPENAI_API_KEY,
+            },
+
+            // Enviar os dados no corpo da requisição
+            body: JSON.stringify({
+                model: "gpt-3.5-turbo", //Modelo
+                prompt: pergunta, // Texto da pergunta
+                max_tokens: 2048, // Tamanho da resposta
+                temperature: 0.5 // Criatividade na resposta
+            }),
+        })
+            // Acessa o then quando obtiver resposta
+            .then((resposta) => resposta.json())
+            .then((dados) => {
+                //console.log(dados);
+                //console.log(dados.choices[0].text);
+
+                // Enviar o texto da resposta para a página HTML
+                let resposta = dados.choices[0].text;
+                divMensagem.appendChild(ResponderMensagem(resposta));
+               
+            })
+            // Retorna catch quando gerar erro
+            .catch(() => {
+                // Enviar o texto da resposta para a página HTML
+                divMensagem.appendChild(ResponderMensagem("Não foi possível responder!"));
+            });
+
+   
+});
 

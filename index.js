@@ -2,58 +2,47 @@ let divMensagem = document.querySelector(".chat-messages")
 let buttonEnviar = document.querySelector("#send-message");
 
 function criarMensagem(mensagem) {
-    // Cria um elemento div
-    var divElement = document.createElement('div');
-    divElement.classList.add('message');
-    divElement.classList.add('incoming');
-
-    // Cria um elemento div para o conteúdo da mensagem
-    var contentElement = document.createElement('div');
-    contentElement.classList.add('message-content');
-
-    // Cria um elemento p para o texto da mensagem
-    var pElement = document.createElement('p');
-    pElement.textContent = mensagem;
-
-    // Adiciona o elemento p ao elemento div do conteúdo da mensagem
-    contentElement.appendChild(pElement);
-
-    // Cria um elemento span para o carimbo de data/hora
-    var spanElement = document.createElement('span');
-    spanElement.classList.add('message-timestamp');
-    spanElement.textContent = criarHoraAtual();
-
-    // Adiciona o elemento div do conteúdo da mensagem ao elemento div principal
-    divElement.appendChild(contentElement);
-
-    // Adiciona o elemento span do carimbo de data/hora ao elemento div principal
-    divElement.appendChild(spanElement);
-
-    return divElement;
-
-
-
-}
+    const divPrincipal = document.createElement('div');
+    
+    const divMensagem = document.createElement('div');
+    divMensagem.classList.add('message', 'incoming');
+    
+    const divConteudoMensagem = document.createElement('div');
+    divConteudoMensagem.classList.add('message-content');
+    
+    const paragrafo = document.createElement('p');
+    paragrafo.textContent = mensagem;
+    
+    divConteudoMensagem.appendChild(paragrafo);
+    divMensagem.appendChild(divConteudoMensagem);
+    
+    const divTimestamp = document.createElement('div');
+    divTimestamp.style.display = 'block';
+    divTimestamp.style.textAlign = 'right';
+    
+    const spanTimestamp = document.createElement('span');
+    spanTimestamp.classList.add('message-timestamp');
+    spanTimestamp.textContent = criarHoraAtual();
+    
+    divTimestamp.appendChild(spanTimestamp);
+    
+    divPrincipal.appendChild(divMensagem);
+    divPrincipal.appendChild(divTimestamp);
+    
+    return divPrincipal;
+  }
 
 function criarHoraAtual() {
-    // Cria um objeto Date para a data/hora atual
-    var date = new Date();
-
-    // Obtém as horas e minutos
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-
-    // Determina se é AM ou PM
-    var amOrPm = hours >= 12 ? 'PM' : 'AM';
-
-    // Converte para o formato 12 horas
+   
+    let date = new Date();
+  
+    let hours = date.getHours();
+    let minutes = date.getMinutes();   
+    let amOrPm = hours >= 12 ? 'PM' : 'AM';    
     hours = hours % 12;
-    hours = hours ? hours : 12; // Define 12 horas para meia-noite (0 horas)
-
-    // Formata os minutos com dois dígitos
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-
-    // Cria a string no formato "hh:mm AM/PM"
+    hours = hours ? hours : 12;    
+    minutes = minutes < 10 ? '0' + minutes : minutes; 
+     
     return currentTime = hours + ':' + minutes + ' ' + amOrPm;
 
 }

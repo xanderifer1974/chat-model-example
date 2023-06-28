@@ -42,7 +42,7 @@ function criarHoraAtual() {
     hours = hours % 12;
     hours = hours ? hours : 12;    
     minutes = minutes < 10 ? '0' + minutes : minutes; 
-     
+
     return currentTime = hours + ':' + minutes + ' ' + amOrPm;
 
 }
@@ -50,8 +50,48 @@ function criarHoraAtual() {
 function EnviarMensagem() {
 
     let mensagem = document.querySelector("input#mensagem").value;
+    let resposta = "Olá, iremos responder em breve a sua mensagem";
+    let horario = criarHoraAtual();
     divMensagem.appendChild(criarMensagem(mensagem))
+
+    setTimeout(function() {
+        let Resposta = ResponderMensagem(resposta,horario)
+        divMensagem.appendChild(Resposta)
+      }, 2000);
+      
+
 }
+
+function ResponderMensagem(texto, horario) {
+    var divMensagem = document.createElement('div');
+    divMensagem.id = 'mensagem-e-horario-resposta';
+  
+    var divOutgoing = document.createElement('div');
+    divOutgoing.classList.add('message', 'outgoing');
+  
+    var divContent = document.createElement('div');
+    divContent.classList.add('message-content');
+  
+    var paragrafo = document.createElement('p');
+    paragrafo.textContent = texto;
+  
+    divContent.appendChild(paragrafo);
+    divOutgoing.appendChild(divContent);
+    divMensagem.appendChild(divOutgoing);
+  
+    var divHorario = document.createElement('div');
+    divHorario.style.display = 'block';
+    divHorario.style.textAlign = 'left';
+  
+    var spanHorario = document.createElement('span');
+    spanHorario.classList.add('message-timestamp');
+    spanHorario.textContent = horario;
+  
+    divHorario.appendChild(spanHorario);
+    divMensagem.appendChild(divHorario);
+  
+    return divMensagem;
+  }
 
 buttonEnviar.addEventListener("click",EnviarMensagem);
 

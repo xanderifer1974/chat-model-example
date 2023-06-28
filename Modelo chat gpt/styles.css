@@ -101,7 +101,7 @@
   
   .chat-input button {
     padding: 10px 20px;
-    background-color: #13454C;;
+    background-color: #13454C;
     color: #fff;
     border: none;
     border-radius: 0 5px 5px 0;
@@ -111,8 +111,10 @@
   .chat-input button:hover {
     background-color: #046673;
   }
-  
-  .send-button, .attach-button {
+
+  /* ... seu código CSS existente ... */
+
+.send-button, .attach-button {
     padding: 10px;
     border: none;
     background-color: transparent;
@@ -126,3 +128,7 @@
   .send-button:focus, .attach-button:focus {
     outline: none;
   }
+  
+  /* ... seu código CSS existente ... */
+  
+  

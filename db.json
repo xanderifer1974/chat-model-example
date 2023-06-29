@@ -23,7 +23,12 @@
       {
         "id": 5,
         "pergunta": "Do mês de abril",
-        "resposta": "Sim, te enviarei por email." 
+        "resposta": "Sim, te enviarei por email. Por favor me passe o seu e-mail" 
+      },
+      {
+        "id": 7,
+        "pergunta": "cliente@servico.com.br",
+        "resposta": "Acabei de enviar, favor checar a sua caixa." 
       },
       {
         "id": 6,

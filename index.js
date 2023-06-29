@@ -48,19 +48,6 @@ function criarHoraAtual() {
 
 }
 
-function EnviarMensagem(mensagem) {
-    // let resposta = "Olá, iremos responder em breve a sua mensagem";
-
-    divMensagem.appendChild(criarMensagem(mensagem))
-
-    // setTimeout(function() {
-    //     let Resposta = ResponderMensagem(resposta,horario)
-    //     divMensagem.appendChild(Resposta)
-    //   }, 2000);
-
-
-}
-
 function ResponderMensagem(texto) {
     let horario = criarHoraAtual();
     var divMensagem = document.createElement('div');
@@ -93,27 +80,22 @@ function ResponderMensagem(texto) {
     return divMensagem;
 }
 
-//Crear o modelo de chat com uma api fake.
+//Criar o modelo de chat com uma api fake.
 buttonEnviar.addEventListener("click", async (e) => {
     e.preventDefault();
     let pergunta = document.querySelector("input#mensagem").value;
     divMensagem.appendChild(criarMensagem(pergunta))    
 
-    fetch(`http://localhost:3000/simulacaoChat?pergunta=${pergunta}`)
+    const url = 'http://localhost:3000/simulacaoChat'
+    const partePergunta = encodeURIComponent(pergunta);
+    fetch(`${url}?pergunta=${partePergunta}`)
         .then(response => response.json())
-        .then(data => {
-                      
-            let resposta = data[0].resposta;
-            console.log(resposta)          
-
+        .then(data => {                      
+            let resposta = data[0].resposta;                  
             divMensagem.appendChild(ResponderMensagem(resposta));
         })
-        .catch(error => {
-            // Trate o erro, se necessário
-            divMensagem.appendChild(ResponderMensagem("Não temos resposta para a sua pergunta."));
-            
-        });  
-
-
+        .catch(error => {           
+            divMensagem.appendChild(ResponderMensagem("Não temos resposta para a sua pergunta."));            
+        }); 
 });
 

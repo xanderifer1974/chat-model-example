@@ -2,48 +2,38 @@
     "simulacaoChat": [
       {
         "id": 1,
-        "pergunta": "Oi",
-        "resposta": "Oi, tudo bem."        
+        "pergunta": "Bom dia.",
+        "resposta": "Bom dia, o que podemos ajudar?."        
       },
       {
         "id": 2,
-        "pergunta": "Quantos anos tem?",
-        "resposta": "18 anos." 
+        "pergunta": "Preciso de uma segunda via da fatura do mês de maio/2023.",
+        "resposta": "Favor informar o seu CPF." 
       },
       {
         "id": 3,
-        "pergunta": "Pode me ajudar?",
-        "resposta": "Sim claro que posso.." 
+        "pergunta": "451.745.451-74",
+        "resposta": "Seu nome é Carlos Augusto Souza?" 
       },
       {
         "id": 4,
-        "pergunta": "Preciso de uma nova fatura.",
-        "resposta": "Qual fatura precisa." 
+        "pergunta": "Isso mesmo.",
+        "resposta": "Preciso que você me informe um e-mail para envio." 
       },
       {
         "id": 5,
-        "pergunta": "Do mês de abril",
-        "resposta": "Sim, te enviarei por email. Por favor me passe o seu e-mail" 
+        "pergunta": "Sim, meu email é carlossouza@gmail.com",
+        "resposta": "Só um instate Sr. Carlos, que enviaremos o email." 
       },
       {
         "id": 7,
-        "pergunta": "cliente@servico.com.br",
-        "resposta": "Acabei de enviar, favor checar a sua caixa." 
+        "pergunta": "Sim, no aguardo.",
+        "resposta": "Sr. Carlos, acabamos de enviar o e-mail. Favor checar an sua caixa de mensagem." 
       },
       {
         "id": 6,
-        "pergunta": "Obrigado",
-        "resposta": "De nada." 
-      }
-    ],
-    "categorias": [
-      {
-        "id": 1,
-        "nome": "Hambúrgueres"
-      },
-      {
-        "id": 2,
-        "nome": "Refrigerantes"
+        "pergunta": "Recebi o e-mail com a fatura, obrigado.",
+        "resposta": "Nós que agradecemos em poder ajudar." 
       }
     ]
   }

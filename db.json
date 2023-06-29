@@ -1,0 +1,44 @@
+{
+    "simulacaoChat": [
+      {
+        "id": 1,
+        "pergunta": "Oi",
+        "resposta": "Oi, tudo bem."        
+      },
+      {
+        "id": 2,
+        "pergunta": "Quantos anos tem?",
+        "resposta": "18 anos." 
+      },
+      {
+        "id": 3,
+        "pergunta": "Pode me ajudar?",
+        "resposta": "Sim claro que posso.." 
+      },
+      {
+        "id": 4,
+        "pergunta": "Preciso de uma nova fatura.",
+        "resposta": "Qual fatura precisa." 
+      },
+      {
+        "id": 5,
+        "pergunta": "Do mês de abril",
+        "resposta": "Sim, te enviarei por email." 
+      },
+      {
+        "id": 6,
+        "pergunta": "Obrigado",
+        "resposta": "De nada." 
+      }
+    ],
+    "categorias": [
+      {
+        "id": 1,
+        "nome": "Hambúrgueres"
+      },
+      {
+        "id": 2,
+        "nome": "Refrigerantes"
+      }
+    ]
+  }

@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "S53Zynqu0cRkWz98LY9GLFg5yVHgkMu84KrpscdUmB8M4N/XCke3Y8T2hNOQstog6/pQpWjh87E3AOrStcUwZg==",
+  "success": true,
+  "projectFilePath": "C:\\Treinamentos\\chat-model-project\\chat-model-example\\webAppModelChat\\webAppModelChat.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://10.130.8.73/tfs/teamddsprojectcollection/_packaging/NugetFeed/nuget/v3/index.json'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    },
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://10.130.8.82/nugetserver/nuget/'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
+}

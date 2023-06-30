@@ -24,5 +24,21 @@ namespace webApiChatModel.Controllers
 
             return Ok(listChat);
         }
+
+        [HttpGet("buscarPorId/{id}")]
+        public async Task<ActionResult<ChatModel>> BuscarConversaPorId(int id)
+        {
+            ChatModel chat = await _chatRepositorio.BuscarConversaPorId(id);
+
+            return Ok(chat);
+        }
+
+        [HttpGet("buscarPorPergunta/{pergunta}")]
+        public async Task<ActionResult<ChatModel>> BuscarConversaPorPergunta(string pergunta)
+        {
+            ChatModel chat = await _chatRepositorio.BuscarConversaPorPergunta(pergunta);
+
+            return Ok(chat);
+        }
     }
 }

@@ -20,6 +20,13 @@ namespace webApiChatModel
 
             var app = builder.Build();
 
+            // Habilitar CORS
+            app.UseCors(builder =>
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader()
+            );
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

@@ -85,18 +85,18 @@ buttonEnviar.addEventListener("click", async (e) => {
     e.preventDefault();
     let pergunta = document.querySelector("input#mensagem").value;
     divMensagem.appendChild(criarMensagem(pergunta))
-    document.querySelector("input#mensagem").value = "";
+    document.querySelector("input#mensagem").value = "";    
 
-    //const url = 'http://localhost:3000/simulacaoChat'
-    //const partePergunta = encodeURIComponent(pergunta);
-    //fetch(`${url}?pergunta=${partePergunta}`)
-    //    .then(response => response.json())
-    //    .then(data => {
-    //        let resposta = data[0].resposta;
-    //        divMensagem.appendChild(ResponderMensagem(resposta));
-    //    })
-    //    .catch(error => {
-    //        divMensagem.appendChild(ResponderMensagem("Não temos resposta para a sua pergunta."));
-    //    });
+    let url = `https://localhost:7173/api/Chat/buscarPorPergunta/${encodeURIComponent(pergunta)}`   
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            let resposta = data.resposta;
+            divMensagem.appendChild(ResponderMensagem(resposta));
+        })
+        .catch(error => {
+            divMensagem.appendChild(ResponderMensagem("Não temos resposta para a sua pergunta."));
+        });
 });
 

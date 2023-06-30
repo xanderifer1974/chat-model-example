@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using webApiChatModel.Models;
+using webApiChatModel.Repositorios;
+using webApiChatModel.Repositorios.Interfaces;
 
 namespace webApiChatModel.Controllers
 {
@@ -8,10 +10,19 @@ namespace webApiChatModel.Controllers
     [ApiController]
     public class ChatController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<List<ChatModel>> BuscarTodasConversas()
+        private readonly IChatRepositorio _chatRepositorio;
+
+        public ChatController(IChatRepositorio chatRepositorio)
         {
-            return Ok();
+            _chatRepositorio = chatRepositorio;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<ChatModel>>>  BuscarTodasConversas()
+        {
+           List<ChatModel> listChat = await _chatRepositorio.BuscarTodasConversas();
+
+            return Ok(listChat);
         }
     }
 }

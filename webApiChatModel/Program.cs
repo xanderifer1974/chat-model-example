@@ -1,3 +1,6 @@
+using webApiChatModel.Repositorios;
+using webApiChatModel.Repositorios.Interfaces;
+
 namespace webApiChatModel
 {
     public class Program
@@ -12,6 +15,8 @@ namespace webApiChatModel
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<IChatRepositorio, ChatRepositorio>();
 
             var app = builder.Build();
 

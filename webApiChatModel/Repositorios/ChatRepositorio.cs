@@ -1,27 +1,30 @@
 ﻿using webApiChatModel.Models;
 using webApiChatModel.Repositorios.Interfaces;
+using webApiChatModel.Repositorios.MockBD;
 
 namespace webApiChatModel.Repositorios
 {
     public class ChatRepositorio : IChatRepositorio
     {
+        private readonly List<ChatModel> _chatDB = ChatBDMock.getChatList();
+
         
-      
-        public Task<ChatModel> BuscarConversaPorId(int id)
+
+        public async Task <List<ChatModel>> BuscarTodasConversas()
         {
-            throw new NotImplementedException();
+            return  _chatDB.ToList();
         }
 
-        public Task<ChatModel> BuscarConversaPorPergunta(string pergunta)
+        public async Task<ChatModel> BuscarConversaPorId(int id)
         {
-            throw new NotImplementedException();
+           return _chatDB.FirstOrDefault(x => x.IdChat == id);      
         }
 
-        public Task<List<ChatModel>> BuscarTodasConversas()
+        public async Task<ChatModel> BuscarConversaPorPergunta(string pergunta)
         {
-            throw new NotImplementedException();
-        }      
+            return _chatDB.FirstOrDefault(x => x.Pergunta == pergunta);
+        }
 
-
+       
     }
 }

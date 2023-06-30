@@ -80,7 +80,7 @@ function ResponderMensagem(texto) {
     return divMensagem;
 }
 
-//Criar o modelo de chat com uma api fake.
+
 buttonEnviar.addEventListener("click", async (e) => {
     e.preventDefault();
     let pergunta = document.querySelector("input#mensagem").value;
@@ -90,8 +90,7 @@ buttonEnviar.addEventListener("click", async (e) => {
     let url = `https://localhost:7173/api/Chat/buscarPorPergunta/${encodeURIComponent(pergunta)}`   
     fetch(url)
         .then(response => response.json())
-        .then(data => {
-            console.log(data)
+        .then(data => {           
             let resposta = data.resposta;
             divMensagem.appendChild(ResponderMensagem(resposta));
         })

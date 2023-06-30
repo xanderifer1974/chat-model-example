@@ -2,9 +2,12 @@
 {
     public class ChatModel
     {
-        public int IdChat { get; set; }
-        public string Pergunta { get; set; }
-        public string Resposta { get; set; }
+        public int? IdChat { get; set; }
+        public string? Pergunta { get; set; }
+        public string? Resposta { get; set; }
+
+        public ChatModel() { }
+
 
         public ChatModel(int idChat, string pergunta, string resposta)
         {
@@ -12,6 +15,9 @@
             Pergunta = pergunta;
             Resposta = resposta;
         }
+        
+      
+        
 
     }
 }

@@ -100,11 +100,11 @@ function handleFileUpload(event) {
 
     setTimeout(() => {
         divMensagem.appendChild(ResponderMensagem(resposta));
+        divMensagem.scrollTop = divMensagem.scrollHeight;
     }, 2000);
 
     event.target.value = '';
-
-    divMensagem.scrollTop = divMensagem.scrollHeight;
+   
 }
 
 buttonUpload.addEventListener('click', function (e) {

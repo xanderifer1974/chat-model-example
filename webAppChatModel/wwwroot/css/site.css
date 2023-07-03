@@ -141,3 +141,7 @@ div#chat-main-container {
     margin-top: 15%;
     padding-left: 45%;
 }
+
+.cancel-cursor {
+    cursor: not-allowed;
+}

@@ -1,6 +1,7 @@
 ﻿let divMensagem = document.querySelector(".chat-body")
 let buttonEnviar = document.querySelector("#send-message");
 let buttonUpload = document.getElementById('file-input');
+let inputMensage = document.querySelector("input#mensagem");
 let arquivoSelecionado;
 
 
@@ -102,22 +103,29 @@ buttonEnviar.addEventListener("click", async (e) => {
     e.preventDefault();
     let pergunta = document.querySelector("input#mensagem").value;
 
-    divMensagem.appendChild(criarMensagem(pergunta))
-    document.querySelector("input#mensagem").value = "";
-
-    let url = `https://localhost:7173/api/Chat/buscarPorPergunta/${encodeURIComponent(pergunta)}`
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            let resposta = data.resposta;
-            divMensagem.appendChild(ResponderMensagem(resposta));
-            divMensagem.scrollTop = divMensagem.scrollHeight;
-        })
-        .catch(error => {
-            divMensagem.appendChild(ResponderMensagem("Não temos resposta para a sua pergunta."));
-            divMensagem.scrollTop = divMensagem.scrollHeight;
-        });
-
-
+    if (pergunta.trim() !=='') {
+        divMensagem.appendChild(criarMensagem(pergunta));
+        let url = `https://localhost:7173/api/Chat/buscarPorPergunta/${encodeURIComponent(pergunta)}`
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                let resposta = data.resposta;
+                divMensagem.appendChild(ResponderMensagem(resposta));
+                divMensagem.scrollTop = divMensagem.scrollHeight;
+            })
+            .catch(error => {
+                divMensagem.appendChild(ResponderMensagem("Não temos resposta para a sua pergunta."));
+                divMensagem.scrollTop = divMensagem.scrollHeight;
+            });
+        document.querySelector("input#mensagem").value = "";
+    }    
 });
+
+inputMensage.addEventListener('input', function () {
+    if (inputMensage.value.trim() != '') {
+        buttonEnviar.disabled = false;       
+    } else {
+        buttonEnviar.disabled = true;       
+    }
+})
 

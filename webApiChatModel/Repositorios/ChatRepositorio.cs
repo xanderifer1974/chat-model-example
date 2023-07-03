@@ -22,34 +22,66 @@ namespace webApiChatModel.Repositorios
 
         public async Task<ChatModel> BuscarConversaPorPergunta(string pergunta)
         {
-            ChatModel resposta = new ChatModel();
-            var result = _chatDB.Where(e => e.Pergunta.ToUpper().Contains(pergunta.ToUpper())).FirstOrDefault();
-            if (result != null)
+            ChatModel chat = new ChatModel();
+            chat.Pergunta = pergunta;           
+            string nomeArquivo = "";
+
+            if (pergunta.StartsWith("Arquivo selecionado:"))
             {
-                resposta = result;
-                if (result.IdChat == 2 && !pergunta.Contains("maio de 2023"))
+                int indiceDoisPontos = pergunta.IndexOf(':');
+
+                if (indiceDoisPontos != -1 && indiceDoisPontos < pergunta.Length - 1)
                 {
-                    resposta.Resposta = "Favor informar o mês da fatura.";
+                    nomeArquivo = pergunta.Substring(indiceDoisPontos + 1).Trim();
+                    
                 }
 
-                if (result.IdChat == 3 && !pergunta.Contains("451.745.451-74"))
-                {
-                    resposta.Resposta = "CPF informado não corresponde a nossa base, favor informar corretamente o seu cpf.";
-                }
+                chat.Pergunta = pergunta;
+                chat.Resposta = $"Recebemos o arquivo {nomeArquivo} com sucesso!";
 
-                if (result.IdChat == 5 && !pergunta.Contains("carlossouza@gmail.com"))
-                {
-                    resposta.Resposta = "O email informado não corresponde ao e-mail cadastrado. Informe novamente o seu email";
-                }
-
-                return resposta;
             }
             else
             {
-                resposta.Resposta = "Não temos resposta para sua pergunta, favor reformular a mesma.";
-                return resposta;
+                chat = pesquisarPergunta(chat);
+               
+            }
+           
+
+            return chat;
+
+        }
+
+        private ChatModel pesquisarPergunta(ChatModel chatModel)
+        {
+            var result = _chatDB.Where(e => e.Pergunta.ToUpper().Contains(chatModel.Pergunta.ToUpper())).FirstOrDefault();
+            if (result != null)
+            {
+               
+                if (result.IdChat == 2 && !chatModel.Pergunta.Contains("maio de 2023"))
+                {
+                    chatModel.Resposta = "Favor informar o mês da fatura.";
+                    return chatModel;
+                }
+
+                if (result.IdChat == 3 && !chatModel.Pergunta.Contains("451.745.451-74"))
+                {
+                    chatModel.Resposta = "CPF informado não corresponde a nossa base, favor informar corretamente o seu cpf.";
+                    return chatModel;
+                }
+
+                if (result.IdChat == 5 && !chatModel.Pergunta.Contains("carlossouza@gmail.com"))
+                {
+                    chatModel.Resposta = "O email informado não corresponde ao e-mail cadastrado. Informe novamente o seu email";
+                    return chatModel;
+                }               
+            }
+            else
+            {
+                chatModel.Resposta = "Não temos resposta para sua pergunta, favor reformular a mesma.";
+                return chatModel;
             }
 
+            return result;
         }
 
 

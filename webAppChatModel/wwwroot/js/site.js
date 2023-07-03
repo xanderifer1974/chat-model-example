@@ -85,46 +85,30 @@ function ResponderMensagem(texto) {
 function handleFileUpload(event) {
 
 
-    const file = event.target.files[0]; 
-    let resposta = "";
-
-    arquivoSelecionado = `Arquivo selecionado: ${file.name}`    
-   
-    divMensagem.appendChild(criarMensagem(arquivoSelecionado));
-
-    if (arquivoSelecionado.startsWith('Arquivo selecionado:')) {
-        resposta = `Obrigado por enviar o arquivo ${file.name}! `
-    } else {
-        resposta = 'Não recebemos o arquivo enviado!'
-    }
-
-    setTimeout(() => {
-        divMensagem.appendChild(ResponderMensagem(resposta));
-        divMensagem.scrollTop = divMensagem.scrollHeight;
-    }, 2000);
-
+    const file = event.target.files[0];   
+    arquivoSelecionado = `Arquivo selecionado: ${file.name}`
+    document.querySelector("input#mensagem").value = arquivoSelecionado; 
     event.target.value = '';
-   
 }
 
 buttonUpload.addEventListener('click', function (e) {
     const input = document.createElement('input');
-    input.type = 'file'; 
+    input.type = 'file';
     input.click();
-    input.addEventListener("change", handleFileUpload);    
+    input.addEventListener("change", handleFileUpload);
 });
 
 buttonEnviar.addEventListener("click", async (e) => {
     e.preventDefault();
     let pergunta = document.querySelector("input#mensagem").value;
-    
-    divMensagem.appendChild(criarMensagem(pergunta))
-    document.querySelector("input#mensagem").value = "";    
 
-    let url = `https://localhost:7173/api/Chat/buscarPorPergunta/${encodeURIComponent(pergunta)}`   
+    divMensagem.appendChild(criarMensagem(pergunta))
+    document.querySelector("input#mensagem").value = "";
+
+    let url = `https://localhost:7173/api/Chat/buscarPorPergunta/${encodeURIComponent(pergunta)}`
     fetch(url)
         .then(response => response.json())
-        .then(data => {           
+        .then(data => {
             let resposta = data.resposta;
             divMensagem.appendChild(ResponderMensagem(resposta));
             divMensagem.scrollTop = divMensagem.scrollHeight;
@@ -134,6 +118,6 @@ buttonEnviar.addEventListener("click", async (e) => {
             divMensagem.scrollTop = divMensagem.scrollHeight;
         });
 
-    
+
 });
 

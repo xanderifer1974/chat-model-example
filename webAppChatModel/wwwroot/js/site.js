@@ -1,5 +1,7 @@
 ﻿let divMensagem = document.querySelector(".chat-body")
 let buttonEnviar = document.querySelector("#send-message");
+let buttonUpload = document.getElementById('file-input');
+let arquivoSelecionado;
 
 
 function criarMensagem(mensagem) {
@@ -80,10 +82,42 @@ function ResponderMensagem(texto) {
     return divMensagem;
 }
 
+function handleFileUpload(event) {
+
+
+    const file = event.target.files[0]; 
+    let resposta = "";
+
+    arquivoSelecionado = `Arquivo selecionado: ${file.name}`    
+   
+    divMensagem.appendChild(criarMensagem(arquivoSelecionado));
+
+    if (arquivoSelecionado.startsWith('Arquivo selecionado:')) {
+        resposta = `Obrigado por enviar o arquivo ${file.name}! `
+    } else {
+        resposta = 'Não recebemos o arquivo enviado!'
+    }
+
+    setTimeout(() => {
+        divMensagem.appendChild(ResponderMensagem(resposta));
+    }, 2000);
+
+    event.target.value = '';
+
+    divMensagem.scrollTop = divMensagem.scrollHeight;
+}
+
+buttonUpload.addEventListener('click', function (e) {
+    const input = document.createElement('input');
+    input.type = 'file'; 
+    input.click();
+    input.addEventListener("change", handleFileUpload);    
+});
 
 buttonEnviar.addEventListener("click", async (e) => {
     e.preventDefault();
     let pergunta = document.querySelector("input#mensagem").value;
+    
     divMensagem.appendChild(criarMensagem(pergunta))
     document.querySelector("input#mensagem").value = "";    
 
@@ -93,9 +127,13 @@ buttonEnviar.addEventListener("click", async (e) => {
         .then(data => {           
             let resposta = data.resposta;
             divMensagem.appendChild(ResponderMensagem(resposta));
+            divMensagem.scrollTop = divMensagem.scrollHeight;
         })
         .catch(error => {
             divMensagem.appendChild(ResponderMensagem("Não temos resposta para a sua pergunta."));
+            divMensagem.scrollTop = divMensagem.scrollHeight;
         });
+
+    
 });
 

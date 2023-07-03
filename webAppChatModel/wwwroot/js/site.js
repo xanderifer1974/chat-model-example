@@ -1,4 +1,4 @@
-﻿let divMensagem = document.querySelector(".chat-messages")
+﻿let divMensagem = document.querySelector(".chat-body")
 let buttonEnviar = document.querySelector("#send-message");
 
 

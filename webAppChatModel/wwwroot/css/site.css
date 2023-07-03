@@ -2,65 +2,33 @@
     box-sizing: border-box;
 }
 
-body {
+body {   
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
 }
 
-.top-bar {
+.chat-container {
+    width: 400px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.chat-header {   
     height: 40px;
     background-color: #13454C;
-    width: 402px;
-    margin: 0 auto;
-    color: #E5E5EA;
-    text-align: center;
-}
-
-.config-bar {
-    display: inline-block;
-    vertical-align: middle;
-    line-height: 2.5;
-}
-
-div#chat {
-    border: 1px solid gray;
-    width: 402px;
-}
-
-.titulo {
-    height: 25px;
-    background-color: #DCDCDC;
     width: 400px;
     margin: 0 auto;
-    color: #13454C;
+    color: #f8feff;
     text-align: center;
 }
 
-.btn-close {
-    height: 5px !important;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-    .btn-close #close-bar {
-        color: #E5E5EA;
-    }
-
-.config-titulo {
-    display: inline-block;
-    vertical-align: middle;
-    line-height: 1.5;
-}
-
-.chat-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.chat-messages {
-    margin-bottom: 20px;
+.chat-body {
+    height: 300px;
+    padding: 10px;
+    overflow-y: scroll;
 }
 
 .message {
@@ -91,6 +59,41 @@ div#chat {
     margin-left: 10px;
 }
 
+.sender {
+    font-weight: bold;
+}
+
+.text {
+    background-color: #f2f2f2;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.config-titulo {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1.5;
+}
+
+button #close {
+    padding-left: 50%;
+}
+
+/* Estilize a barra de rolagem caso deseje */
+.chat-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.chat-body::-webkit-scrollbar-track {
+    background-color: #f2f2f2;
+}
+
+
 .chat-input {
     display: flex;
 }
@@ -105,8 +108,7 @@ div#chat {
 
     .chat-input button {
         padding: 10px 20px;
-        background-color: #13454C;
-        ;
+        background-color: #13454C;       
         color: #fff;
         border: none;
         border-radius: 0 5px 5px 0;
@@ -117,22 +119,25 @@ div#chat {
             background-color: #046673;
         }
 
-.send-button, .attach-button {
+.send-button,
+.attach-button {
     padding: 10px;
     border: none;
     background-color: transparent;
     cursor: pointer;
 }
 
-    .send-button:hover, .attach-button:hover {
+    .send-button:hover,
+    .attach-button:hover {
         background-color: #E5E5EA;
     }
 
-    .send-button:focus, .attach-button:focus {
+    .send-button:focus,
+    .attach-button:focus {
         outline: none;
     }
 
 div#chat-main-container {
-    margin-top: 25%;
+    margin-top: 15%;
     padding-left: 45%;
 }

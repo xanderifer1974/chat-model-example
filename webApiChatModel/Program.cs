@@ -21,6 +21,9 @@ namespace webApiChatModel
             builder.Services.AddScoped<IChatRepositorio, ChatRepositorio>();
             builder.Services.AddScoped<IChatService, ChatService>();
 
+            builder.Services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
+            builder.Services.AddScoped<IClienteService, ClienteService>();
+
             var app = builder.Build();
 
             // Habilitar CORS

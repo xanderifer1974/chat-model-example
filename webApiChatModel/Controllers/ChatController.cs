@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using webApiChatModel.Models;
-using webApiChatModel.Repositorios;
 using webApiChatModel.Repositorios.Interfaces;
+using webApiChatModel.Services.Interface;
 
 namespace webApiChatModel.Controllers
 {
@@ -10,17 +9,17 @@ namespace webApiChatModel.Controllers
     [ApiController]
     public class ChatController : ControllerBase
     {
-        private readonly IChatRepositorio _chatRepositorio;
+        private readonly IChatService _chatService;
 
-        public ChatController(IChatRepositorio chatRepositorio)
+        public ChatController(IChatService chatService)
         {
-            _chatRepositorio = chatRepositorio;
+            _chatService = chatService;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<ChatModel>>>  BuscarTodasConversas()
         {
-           List<ChatModel> listChat = await _chatRepositorio.BuscarTodasConversas();
+           List<ChatModel> listChat = await _chatService.BuscarTodasConversas();
 
             return Ok(listChat);
         }
@@ -28,7 +27,7 @@ namespace webApiChatModel.Controllers
         [HttpGet("buscarPorId/{id}")]
         public async Task<ActionResult<ChatModel>> BuscarConversaPorId(int id)
         {
-            ChatModel chat = await _chatRepositorio.BuscarConversaPorId(id);
+            ChatModel chat = await _chatService.BuscarConversaPorId(id);
 
             return Ok(chat);
         }
@@ -36,7 +35,7 @@ namespace webApiChatModel.Controllers
         [HttpGet("buscarPorPergunta/{pergunta}")]
         public async Task<ActionResult<ChatModel>> BuscarConversaPorPergunta(string pergunta)
         {
-            ChatModel chat = await _chatRepositorio.BuscarConversaPorPergunta(pergunta);
+            ChatModel chat = await _chatService.BuscarConversaPorPergunta(pergunta);
 
             return Ok(chat);
         }

@@ -1,5 +1,7 @@
 using webApiChatModel.Repositorios;
 using webApiChatModel.Repositorios.Interfaces;
+using webApiChatModel.Services;
+using webApiChatModel.Services.Interface;
 
 namespace webApiChatModel
 {
@@ -17,6 +19,7 @@ namespace webApiChatModel
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddScoped<IChatRepositorio, ChatRepositorio>();
+            builder.Services.AddScoped<IChatService, ChatService>();
 
             var app = builder.Build();
 

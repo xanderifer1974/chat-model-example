@@ -6,5 +6,6 @@ namespace webApiChatModel.Repositorios.Interfaces
     {
         Task<List<ClienteModel>> ListarTodosClientes();
         Task<ClienteModel> ObterClientePorCPF(long cpf);
+        bool VerificaCpfCadastrado(long cpf);
     }
 }

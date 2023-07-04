@@ -22,5 +22,20 @@ namespace webApiChatModel.Repositorios
 
             return Task.FromResult(cliente);
         }
+
+        public bool VerificaCpfCadastrado(long cpf)
+        {
+            int QtdCpfCadastrado = ChatBDMock.getClienteList().Where(c => c.Cpf == cpf).Count();
+
+            if(QtdCpfCadastrado > 0 )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
     }
 }

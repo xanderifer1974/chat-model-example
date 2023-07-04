@@ -1,25 +1,31 @@
 ﻿using webApiChatModel.Models;
+using webApiChatModel.Repositorios.Interfaces;
 using webApiChatModel.Services.Interface;
 
 namespace webApiChatModel.Services
 {
     public class ClienteService : IClienteService
     {
-        private readonly IClienteService _clienteService;
+        private readonly IClienteRepositorio _clienteRepositorio;
 
-        public ClienteService(IClienteService clienteService)
+        public ClienteService(IClienteRepositorio clienteRepositorio)
         {
-            _clienteService = clienteService;
+           _clienteRepositorio = clienteRepositorio;
         }
 
         public async Task<List<ClienteModel>> ListarTodosClientes()
         {
-           return await _clienteService.ListarTodosClientes();
+           return await _clienteRepositorio.ListarTodosClientes();
         }
 
         public async Task<ClienteModel> ObterClientePorCPF(long cpf)
+        {  
+            return await _clienteRepositorio.ObterClientePorCPF(cpf);
+        }
+
+        public bool VerificaCpfCadastrado(long cpf)
         {
-            return await _clienteService.ObterClientePorCPF(cpf);
+            return _clienteRepositorio.VerificaCpfCadastrado(cpf);
         }
     }
 }

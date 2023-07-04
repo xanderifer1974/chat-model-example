@@ -145,3 +145,7 @@ div#chat-main-container {
 .cancel-cursor {
     cursor: not-allowed;
 }
+
+ul {
+    list-style-type: none !important;
+}

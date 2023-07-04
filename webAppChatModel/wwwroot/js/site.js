@@ -4,6 +4,23 @@ let buttonUpload = document.getElementById('file-input');
 let inputMensage = document.querySelector("input#mensagem");
 let arquivoSelecionado;
 
+function saudacao() {
+    var hora = new Date().getHours();
+    var saudacao;
+
+    if (hora >= 5 && hora < 12) {
+        saudacao = "Bom dia";
+    } else if (hora >= 12 && hora < 18) {
+        saudacao = "Boa tarde";
+    } else {
+        saudacao = "Boa noite";
+    }
+
+    return saudacao;
+}
+
+let comprimentos = saudacao();
+
 
 function criarMensagem(mensagem) {
     const divPrincipal = document.createElement('div');
@@ -15,7 +32,7 @@ function criarMensagem(mensagem) {
     divConteudoMensagem.classList.add('message-content');
 
     const paragrafo = document.createElement('p');
-    paragrafo.textContent = mensagem;
+    paragrafo.innerHTML = mensagem;
 
     divConteudoMensagem.appendChild(paragrafo);
     divMensagem.appendChild(divConteudoMensagem);
@@ -63,7 +80,7 @@ function ResponderMensagem(texto) {
     divContent.classList.add('message-content');
 
     var paragrafo = document.createElement('p');
-    paragrafo.textContent = texto;
+    paragrafo.innerHTML = texto;
 
     divContent.appendChild(paragrafo);
     divOutgoing.appendChild(divContent);
@@ -83,6 +100,8 @@ function ResponderMensagem(texto) {
     return divMensagem;
 }
 
+MensagemInicialChat();
+
 function handleFileUpload(event) {
 
 
@@ -99,11 +118,35 @@ buttonUpload.addEventListener('click', function (e) {
     input.addEventListener("change", handleFileUpload);
 });
 
+//Provisório, mas a lógica deverá ser tratada pela API
 buttonEnviar.addEventListener("click", async (e) => {
     e.preventDefault();
-    let pergunta = document.querySelector("input#mensagem").value;
+    let cpf = document.querySelector("input#mensagem").value; 
+    if (!isNaN(cpf)) {
+        if (cpf.trim() !== '' && !isNaN(cpf)) {
+            PesquisarCliente(cpf);
+        } else {
+            divMensagem.appendChild(criarMensagem("Digite um número válido."));
+        }        
+    }
+});
 
-    if (pergunta.trim() !=='') {
+function MensagemInicialChat() {
+    let mensagemInicial = `<p>${comprimentos}, sou a Funny. Sua atendente virtual da FunTV.
+                               Favor informar seu CPF.</p>`
+    divMensagem.appendChild(criarMensagem(mensagemInicial));
+}
+
+inputMensage.addEventListener('input', function () {
+    if (inputMensage.value.trim() != '') {
+        buttonEnviar.disabled = false;       
+    } else {
+        buttonEnviar.disabled = true;       
+    }
+})
+
+function Chat(pergunta) {
+    if (pergunta.trim() !== '') {
         divMensagem.appendChild(criarMensagem(pergunta));
         let url = `https://localhost:7173/api/Chat/buscarPorPergunta/${encodeURIComponent(pergunta)}`
         fetch(url)
@@ -118,14 +161,42 @@ buttonEnviar.addEventListener("click", async (e) => {
                 divMensagem.scrollTop = divMensagem.scrollHeight;
             });
         document.querySelector("input#mensagem").value = "";
-    }    
-});
-
-inputMensage.addEventListener('input', function () {
-    if (inputMensage.value.trim() != '') {
-        buttonEnviar.disabled = false;       
-    } else {
-        buttonEnviar.disabled = true;       
     }
-})
+}
+
+
+
+function PesquisarCliente(pergunta) {
+    if (pergunta.trim() !== '') {
+        divMensagem.appendChild(criarMensagem(pergunta));
+        let CPF = parseInt(pergunta)
+        let url = `https://localhost:7173/api/Cliente/pesquisarPorCpf/${encodeURIComponent(CPF)}`
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                let Nome = data.nome;
+                let resposta = `<h6>Olá ${Nome}, escolha uma das opções abaixo.</h6>
+                         <ul>
+                           <li>01 – Alterar pacote de canais</li>
+                           <li>02 – Alterar dados cadastrais</li>
+                           <li>03 – Solicitar um novo ponto</li>
+                           <li>04 – Alterar endereço da assinatura</li>
+                           <li>05 – Solicitar segunda via da fatura</li>
+                           <li>06 – Renegociar dívida</li>
+                           <li>07 – Cancelar assinatura</li>
+                           <li>08 - Falar com um atendente</li>
+                         </ul>`               
+                divMensagem.appendChild(ResponderMensagem(resposta));
+                divMensagem.scrollTop = divMensagem.scrollHeight;
+            })
+            .catch(error => {
+                divMensagem.appendChild(ResponderMensagem("Não encontramos seu CPF em nossas bases de cadastro. Favor informar um CPF válido."));
+               divMensagem.scrollTop = divMensagem.scrollHeight;
+            });
+        document.querySelector("input#mensagem").value = "";
+    }
+}
+
+
 

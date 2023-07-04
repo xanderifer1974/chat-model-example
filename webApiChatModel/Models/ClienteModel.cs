@@ -1,21 +1,23 @@
 ﻿namespace webApiChatModel.Models
 {
-    public class Cliente
+    public class ClienteModel
     {
         public int IdCliente { get; set; }
         public long Cpf { get; set; }
+        public string? NomeCompleto { get; set; }
         public string? Nome { get; set; }
         public bool Ativo { get; set; }
 
-        public Cliente(int idCliente, long cpf, string? nome, bool ativo)
+        public ClienteModel(int idCliente, long cpf, string? nomeCompleto, string? nome, bool ativo)
         {
             IdCliente = idCliente;
             Cpf = cpf;
+            NomeCompleto = nomeCompleto;
             Nome = nome;
             Ativo = ativo;
         }
 
-        public Cliente()
+        public ClienteModel()
         {
             
         }

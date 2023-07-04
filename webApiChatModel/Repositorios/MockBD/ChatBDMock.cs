@@ -28,5 +28,35 @@ namespace webApiChatModel.Repositorios.MockBD
 
             return listaChat;
         }
+
+        public static List<ClienteModel> getClienteList()
+        {
+            List<ClienteModel> listCliente = new List<ClienteModel>();
+
+            ClienteModel cliente1 = new ClienteModel(1, 19498820000183, "Antonio Figueiredo de Oliveira","Antonio", true);
+            ClienteModel cliente2 = new ClienteModel(2, 32722766000176, "Graziela Lopes Nunes","Graziela", true);
+            ClienteModel cliente3 = new ClienteModel(3, 25236478000146, "Paulo Roberto Silva Santos","Paulo Roberto", true);
+            ClienteModel cliente4 = new ClienteModel(4, 37081595000167, "João Paulo Martins", "João Paulo", true);
+            ClienteModel cliente5 = new ClienteModel(5, 33763302000170, "Amanda Bitencourt de Azevedo", "Amanda",true);
+            ClienteModel cliente6 = new ClienteModel(6, 30436053000110, "Simone Cury Machado","Simone", true);
+            ClienteModel cliente7 = new ClienteModel(7, 93121570000110, "Gabriel Marcos Limeira","Gabriel Marcos", true);
+            ClienteModel cliente8 = new ClienteModel(8, 32985744000107, "Rafael Pedreira de Souza","Rafael", true);
+            ClienteModel cliente9 = new ClienteModel(9, 96564711000168, "Lucia das Neves Ferreira","Lucia", true);
+            ClienteModel cliente10 = new ClienteModel(10, 90409115000127, "Ezequiel Medeiros Mendonza","Ezequiel", true);
+
+            listCliente.Add(cliente1);
+            listCliente.Add(cliente2);
+            listCliente.Add(cliente3);
+            listCliente.Add(cliente4);
+            listCliente.Add(cliente5);
+            listCliente.Add(cliente6);
+            listCliente.Add(cliente7);
+            listCliente.Add(cliente8);
+            listCliente.Add(cliente9);
+            listCliente.Add(cliente10);
+
+            return listCliente;
+
+        }
     }
 }

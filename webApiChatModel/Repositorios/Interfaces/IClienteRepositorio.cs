@@ -2,7 +2,7 @@
 
 namespace webApiChatModel.Repositorios.Interfaces
 {
-    public interface IClienteRepository
+    public interface IClienteRepositorio
     {
         Task<List<ClienteModel>> ListarTodosClientes();
         Task<ClienteModel> ObterClientePorCPF(long cpf);

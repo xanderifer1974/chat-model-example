@@ -134,7 +134,7 @@ buttonEnviar.addEventListener("click", async (e) => {
 function MensagemInicialChat() {
     let mensagemInicial = `<p>${comprimentos}, sou a Funny. Sua atendente virtual da FunTV.
                                Favor informar seu CPF.</p>`
-    divMensagem.appendChild(criarMensagem(mensagemInicial));
+    divMensagem.appendChild(ResponderMensagem(mensagemInicial));
 }
 
 inputMensage.addEventListener('input', function () {

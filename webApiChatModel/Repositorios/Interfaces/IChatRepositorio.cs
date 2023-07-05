@@ -4,9 +4,9 @@ namespace webApiChatModel.Repositorios.Interfaces
 {
     public interface IChatRepositorio
     {
-        Task<List<ChatModel>> BuscarTodasConversas();
-        Task<ChatModel> BuscarConversaPorId(int id);
-        Task<ChatModel> BuscarConversaPorPergunta(string pergunta);
+        List<ChatModel> BuscarTodasConversas();
+        ChatModel BuscarConversaPorId(int id);
+        ChatModel BuscarConversaPorPergunta(string pergunta);
 
     }
 }

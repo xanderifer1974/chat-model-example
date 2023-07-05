@@ -16,19 +16,21 @@ namespace webApiChatModel.Services
             _clienteRepositorio = clienteRepositorio;
         }
 
-        public Task<ChatModel> BuscarConversaPorId(int id)
+        public async Task<ChatModel> BuscarConversaPorId(int id)
         {
-           return _chatRepositorio.BuscarConversaPorId(id);
+           return await Task.FromResult(_chatRepositorio.BuscarConversaPorId(id));
         }
 
-        public Task<ChatModel> BuscarConversaPorPergunta(string pergunta)
+        public async Task<ChatModel> BuscarConversaPorPergunta(string pergunta)
         {
-            return _chatRepositorio.BuscarConversaPorPergunta(pergunta);
+            ChatModel model = new ChatModel();
+            model = _chatRepositorio.BuscarConversaPorPergunta(pergunta);
+            return await Task.FromResult(model);
         }
 
-        public Task<List<ChatModel>> BuscarTodasConversas()
+        public async Task<List<ChatModel>> BuscarTodasConversas()
         {
-            return _chatRepositorio.BuscarTodasConversas();
+            return await Task.FromResult(_chatRepositorio.BuscarTodasConversas());
         }
     }
 }

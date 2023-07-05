@@ -10,17 +10,17 @@ namespace webApiChatModel.Repositorios
 
 
 
-        public async Task<List<ChatModel>> BuscarTodasConversas()
+        public List<ChatModel> BuscarTodasConversas()
         {
             return _chatDB.ToList();
         }
 
-        public async Task<ChatModel> BuscarConversaPorId(int id)
+        public ChatModel BuscarConversaPorId(int id)
         {
             return _chatDB.FirstOrDefault(x => x.IdChat == id);
         }
 
-        public async Task<ChatModel> BuscarConversaPorPergunta(string pergunta)
+        public ChatModel BuscarConversaPorPergunta(string pergunta)
         {
             ChatModel chat = new ChatModel();
             chat.Pergunta = pergunta;           

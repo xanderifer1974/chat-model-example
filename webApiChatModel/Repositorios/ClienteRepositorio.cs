@@ -1,7 +1,6 @@
 ﻿using webApiChatModel.Models;
 using webApiChatModel.Repositorios.Interfaces;
 using webApiChatModel.Repositorios.MockBD;
-using webApiChatModel.Util;
 
 namespace webApiChatModel.Repositorios
 {
@@ -17,21 +16,10 @@ namespace webApiChatModel.Repositorios
         }
 
         public ClienteModel ObterClientePorCPF(long cpf)
-        {
-            //Valida o CPF
-            if (UtilApi.ValidaCPF(cpf.ToString()))
-            {
-                throw new ArgumentException("CPF inválido");
-            }
+        {         
           
           ClienteModel cliente = ChatBDMock.getClienteList().FirstOrDefault(c => c.Cpf == cpf);
-
-            if(cliente == null)
-            {
-                throw new InvalidOperationException("Cliente não encontrado");
-            }         
-
-
+         
           return cliente;
         }       
     }

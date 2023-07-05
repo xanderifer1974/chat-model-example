@@ -1,41 +1,38 @@
 ﻿using webApiChatModel.Models;
 using webApiChatModel.Repositorios.Interfaces;
 using webApiChatModel.Repositorios.MockBD;
+using webApiChatModel.Util;
 
 namespace webApiChatModel.Repositorios
 {
     public class ClienteRepositorio : IClienteRepositorio
     {
         
-        public Task<List<ClienteModel>> ListarTodosClientes()
+        public List<ClienteModel> ListarTodosClientes()
         {
             List<ClienteModel> list = ChatBDMock.getClienteList();
 
-            return  Task.FromResult(list);
+            return  list;
 
         }
 
-        public Task<ClienteModel> ObterClientePorCPF(long cpf)
+        public ClienteModel ObterClientePorCPF(long cpf)
         {
+            //Valida o CPF
+            if (UtilApi.ValidaCPF(cpf.ToString()))
+            {
+                throw new ArgumentException("CPF inválido");
+            }
           
           ClienteModel cliente = ChatBDMock.getClienteList().FirstOrDefault(c => c.Cpf == cpf);
 
-            return Task.FromResult(cliente);
-        }
-
-        public bool VerificaCpfCadastrado(long cpf)
-        {
-            int QtdCpfCadastrado = ChatBDMock.getClienteList().Where(c => c.Cpf == cpf).Count();
-
-            if(QtdCpfCadastrado > 0 )
+            if(cliente == null)
             {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+                throw new InvalidOperationException("Cliente não encontrado");
+            }         
 
-        }
+
+          return cliente;
+        }       
     }
 }

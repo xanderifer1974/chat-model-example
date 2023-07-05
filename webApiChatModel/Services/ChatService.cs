@@ -8,10 +8,12 @@ namespace webApiChatModel.Services
     public class ChatService: IChatService
     {
         private readonly IChatRepositorio _chatRepositorio;
+        private readonly IClienteRepositorio _clienteRepositorio;
 
-        public ChatService(IChatRepositorio chatRepositorio)
+        public ChatService(IChatRepositorio chatRepositorio, IClienteRepositorio clienteRepositorio)
         {
             _chatRepositorio = chatRepositorio;
+            _clienteRepositorio = clienteRepositorio;
         }
 
         public Task<ChatModel> BuscarConversaPorId(int id)

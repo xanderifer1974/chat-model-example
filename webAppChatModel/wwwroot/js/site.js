@@ -124,7 +124,7 @@ buttonEnviar.addEventListener("click", async (e) => {
     let cpf = document.querySelector("input#mensagem").value; 
     if (!isNaN(cpf)) {
         if (cpf.trim() !== '' && !isNaN(cpf)) {
-            PesquisarCliente(cpf);
+            Chat(cpf);
         } else {
             divMensagem.appendChild(criarMensagem("Digite um número válido."));
         }        
@@ -166,37 +166,37 @@ function Chat(pergunta) {
 
 
 
-function PesquisarCliente(pergunta) {
-    if (pergunta.trim() !== '') {
-        divMensagem.appendChild(criarMensagem(pergunta));
-        let CPF = parseInt(pergunta)
-        let url = `https://localhost:7173/api/Cliente/pesquisarPorCpf/${encodeURIComponent(CPF)}`
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                let Nome = data.nome;
-                let resposta = `<h6>Olá ${Nome}, escolha uma das opções abaixo.</h6>
-                         <ul>
-                           <li>01 – Alterar pacote de canais</li>
-                           <li>02 – Alterar dados cadastrais</li>
-                           <li>03 – Solicitar um novo ponto</li>
-                           <li>04 – Alterar endereço da assinatura</li>
-                           <li>05 – Solicitar segunda via da fatura</li>
-                           <li>06 – Renegociar dívida</li>
-                           <li>07 – Cancelar assinatura</li>
-                           <li>08 - Falar com um atendente</li>
-                         </ul>`               
-                divMensagem.appendChild(ResponderMensagem(resposta));
-                divMensagem.scrollTop = divMensagem.scrollHeight;
-            })
-            .catch(error => {
-                divMensagem.appendChild(ResponderMensagem("Não encontramos seu CPF em nossas bases de cadastro. Favor informar um CPF válido."));
-               divMensagem.scrollTop = divMensagem.scrollHeight;
-            });
-        document.querySelector("input#mensagem").value = "";
-    }
-}
+//function PesquisarCliente(pergunta) {
+//    if (pergunta.trim() !== '') {
+//        divMensagem.appendChild(criarMensagem(pergunta));
+//        let CPF = parseInt(pergunta)
+//        let url = `https://localhost:7173/api/Cliente/pesquisarPorCpf/${encodeURIComponent(CPF)}`
+//        fetch(url)
+//            .then(response => response.json())
+//            .then(data => {
+//                console.log(data)
+//                let Nome = data.nome;
+//                let resposta = `<h6>Olá ${Nome}, escolha uma das opções abaixo.</h6>
+//                         <ul>
+//                           <li>01 – Alterar pacote de canais</li>
+//                           <li>02 – Alterar dados cadastrais</li>
+//                           <li>03 – Solicitar um novo ponto</li>
+//                           <li>04 – Alterar endereço da assinatura</li>
+//                           <li>05 – Solicitar segunda via da fatura</li>
+//                           <li>06 – Renegociar dívida</li>
+//                           <li>07 – Cancelar assinatura</li>
+//                           <li>08 - Falar com um atendente</li>
+//                         </ul>`               
+//                divMensagem.appendChild(ResponderMensagem(resposta));
+//                divMensagem.scrollTop = divMensagem.scrollHeight;
+//            })
+//            .catch(error => {
+//                divMensagem.appendChild(ResponderMensagem("Não encontramos seu CPF em nossas bases de cadastro. Favor informar um CPF válido."));
+//               divMensagem.scrollTop = divMensagem.scrollHeight;
+//            });
+//        document.querySelector("input#mensagem").value = "";
+//    }
+//}
 
 
 

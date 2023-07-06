@@ -16,10 +16,21 @@ namespace webApiChatModel.Repositorios.MockBD
             ChatModel conversa2 = new ChatModel(2, "101", "Você escolheu o <b>Pacote Full</b>. Iremos providenciar a alteração.");
             ChatModel conversa3 = new ChatModel(3, "102", "Você escolheu o <b>Pacote Filmes</b>. Iremos providenciar a alteração.");
             ChatModel conversa4 = new ChatModel(4, "103", "Você escolheu o <b>Pacote Básico</b>. Iremos providenciar a alteração.");
-            ChatModel conversa5 = new ChatModel(5, "Sim, meu email é carlossouza@gmail.com", "Só um instante Sr. Carlos, que enviaremos o email.");
-            ChatModel conversa6 = new ChatModel(6, "Sim, no aguardo", "Sr. Carlos, acabamos de enviar o e-mail. Favor checar sua caixa de mensagem.");
-            ChatModel conversa7 = new ChatModel(7, "Recebi o e-mail com a fatura, obrigado", "Nós que agradecemos em poder ajudar.");
-            ChatModel conversa8 = new ChatModel(7, "Gostaria de atualizar os dados de cadastro.", "Favor nos enviar os dados em arquivo. ");
+            ChatModel conversa5 = new ChatModel(5, "02", $"<h6>Alterar dados cadastrais:</h6>" +
+                        $"<ul><li>201 – Nome</li>" +
+                        $"<li>202 – RG</li>" +
+                        $"<li>203 - CPF</li>" +
+                        $"<li>204 - Telefone</li>" +
+                        $"<li>205 - Endereço</li>" +
+                        $"</ul>");
+            ChatModel conversa6 = new ChatModel(6, "201", "Você escolheu o <b> Alteração do Nome</b>.Iremos prosseguir com a alteração.");
+            ChatModel conversa7 = new ChatModel(7, "202", "Você escolheu o <b> Alteração do RG</b>.Iremos prosseguir com a alteração.");
+            ChatModel conversa8 = new ChatModel(8, "203", "Você escolheu o <b> Alteração do CPF</b>.Iremos prosseguir com a alteração.");
+            ChatModel conversa9 = new ChatModel(9, "204", "Você escolheu o <b> Alteração do Telefone</b>.Iremos prosseguir com a alteração.");
+            ChatModel conversa10 = new ChatModel(10, "205", "Você escolheu o <b> Alteração do Endereço</b>.Iremos prosseguir com a alteração.");
+            ChatModel conversa11 = new ChatModel(11, "Sim", "Iremos te encaminhar para um atendente, aguarde...");
+            ChatModel conversa12 = new ChatModel(12, "Não", "Obrigado por entrar em contato. Qualquer coisa, estamos a sua disposição.");
+            ChatModel conversa13 = new ChatModel(13, "Gostaria de atualizar os dados de cadastro.", "Favor nos enviar os dados em arquivo. ");
 
             listaChat.Add(conversa1);
             listaChat.Add(conversa2);
@@ -29,6 +40,11 @@ namespace webApiChatModel.Repositorios.MockBD
             listaChat.Add(conversa6);
             listaChat.Add(conversa7);
             listaChat.Add(conversa8);
+            listaChat.Add(conversa9);
+            listaChat.Add(conversa10);
+            listaChat.Add(conversa11);
+            listaChat.Add(conversa12);
+            listaChat.Add(conversa13);
 
             return listaChat;
         }

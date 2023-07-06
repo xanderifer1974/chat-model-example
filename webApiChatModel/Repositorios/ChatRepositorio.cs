@@ -53,14 +53,14 @@ namespace webApiChatModel.Repositorios
 
         private ChatModel pesquisarPergunta(ChatModel chatModel)
         {
-            var result = _chatDB.Where(e => e.Pergunta.ToUpper().Contains(chatModel.Pergunta.ToUpper())).FirstOrDefault();
+            var result = _chatDB.Where(e => e.Pergunta.ToUpper().Equals(chatModel.Pergunta.ToUpper())).FirstOrDefault();
             if (result != null)
             {
                 return result;
             }
             else
             {
-                chatModel.Resposta = "Não temos resposta para sua pergunta, favor reformular a mesma.";
+                chatModel.Resposta = "Opção escolhida inválida, deseja falar com um atendente?";
                 return chatModel;
             }
             

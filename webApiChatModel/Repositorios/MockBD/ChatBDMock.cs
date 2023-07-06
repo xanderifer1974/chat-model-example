@@ -8,10 +8,14 @@ namespace webApiChatModel.Repositorios.MockBD
         {
             List<ChatModel> listaChat = new List<ChatModel>();
 
-            ChatModel conversa1 = new ChatModel(1, "Bom dia", "Bom dia, o que podemos ajudar?");
-            ChatModel conversa2 = new ChatModel(2, "Preciso da fatura de maio de 2023", "Favor informar o seu CPF");
-            ChatModel conversa3 = new ChatModel(3, "451.745.451-74", "Seu nome é Carlos Augusto Souza?");
-            ChatModel conversa4 = new ChatModel(4, "Sim, isso mesmo", "Preciso que você me informe um e-mail para envio");
+            ChatModel conversa1 = new ChatModel(01, "01", $"<h6>Alterar Pacotes de Canais:</h6>" +
+                        $"<ul><li>101 – Pacote Full</li>" +
+                        $"<li>102 – Pacote Filmes</li>" +
+                        $"<li>103 -  Pacote Básico</li>" +                      
+                        $"</ul>");
+            ChatModel conversa2 = new ChatModel(2, "101", "Você escolheu o <b>Pacote Full</b>. Iremos providenciar a alteração.");
+            ChatModel conversa3 = new ChatModel(3, "102", "Você escolheu o <b>Pacote Filmes</b>. Iremos providenciar a alteração.");
+            ChatModel conversa4 = new ChatModel(4, "103", "Você escolheu o <b>Pacote Básico</b>. Iremos providenciar a alteração.");
             ChatModel conversa5 = new ChatModel(5, "Sim, meu email é carlossouza@gmail.com", "Só um instante Sr. Carlos, que enviaremos o email.");
             ChatModel conversa6 = new ChatModel(6, "Sim, no aguardo", "Sr. Carlos, acabamos de enviar o e-mail. Favor checar sua caixa de mensagem.");
             ChatModel conversa7 = new ChatModel(7, "Recebi o e-mail com a fatura, obrigado", "Nós que agradecemos em poder ajudar.");

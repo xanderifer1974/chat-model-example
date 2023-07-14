@@ -21,6 +21,10 @@
     </PackageReference>
   </ItemGroup>
 
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute" />
+	</ItemGroup>
+
   <ItemGroup>
     <Folder Include="ApiChatTest\Controllers\" />
     <Folder Include="ApiChatTest\Models\" />
@@ -28,6 +32,10 @@
     <Folder Include="ApiChatTest\Services\" />
     <Folder Include="ApiChatTest\Repositorios\" />
     <Folder Include="AppChatTest\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\webApiChatModel\webApiChatModel.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using webApiChatModel.Models;
-using webApiChatModel.Repositorios.Interfaces;
 using webApiChatModel.Services.Interface;
 
 namespace webApiChatModel.Controllers

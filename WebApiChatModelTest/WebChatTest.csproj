@@ -29,7 +29,6 @@
     <Folder Include="ApiChatTest\Controllers\" />
     <Folder Include="ApiChatTest\Util\" />
     <Folder Include="ApiChatTest\Services\" />
-    <Folder Include="ApiChatTest\Repositorios\" />
     <Folder Include="AppChatTest\" />
   </ItemGroup>
 

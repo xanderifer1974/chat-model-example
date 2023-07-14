@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="ApiChatTest\Controllers\" />
-    <Folder Include="ApiChatTest\Models\" />
     <Folder Include="ApiChatTest\Util\" />
     <Folder Include="ApiChatTest\Services\" />
     <Folder Include="ApiChatTest\Repositorios\" />

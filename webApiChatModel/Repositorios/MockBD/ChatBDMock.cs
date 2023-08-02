@@ -4,6 +4,9 @@ namespace webApiChatModel.Repositorios.MockBD
 {
     public static class ChatBDMock
     {
+        /*
+         * Ver um modo de simular um banco de dados utilizando os dados mockado
+         * Colocar todo o código nas camadas mais internas também */
         public static  List<ChatModel> getChatList()
         {
             List<ChatModel> listaChat = new List<ChatModel>();
